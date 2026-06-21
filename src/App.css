@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+/* ===== app.css – Pure White Theme ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --primary: #6c3af5;
+  --primary-dark: #5a2bd4;
+  --primary-light: #8b5cf6;
+  --primary-bg: #f5f0ff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 12px 40px rgba(108, 58, 245, 0.06);
+  --radius: 16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #ffffff;
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app {
+  min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
 }
