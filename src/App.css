@@ -1,16 +1,22 @@
+/* ===== app.css – Global Styles (Purple Theme) ===== */
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --primary: #111827;
-  --primary-dark: #374151;
-  --primary-light: #6b7280;
-  --primary-bg: #f3f4f6;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
-  --border: #e5e7eb;
+  --primary: #6c3af5;
+  --primary-dark: #5a2bd4;
+  --primary-light: #8b5cf6;
+  --primary-bg: #f5f0ff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 12px 40px rgba(108, 58, 245, 0.06);
+  --radius: 16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html { scroll-behavior: smooth; }
@@ -18,9 +24,10 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Space Grotesk', sans-serif;
   background: #ffffff;
-  color: #111827;
+  color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .app { min-height: 100vh; }
@@ -36,31 +43,32 @@ section { padding: 80px 0; background: #ffffff; }
 .section-label {
   font-family: 'Fira Code', monospace;
   font-size: 0.78rem;
-  color: #9ca3af;
+  color: var(--text-muted);
   text-align: center;
   letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .section-title {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   text-align: center;
   margin-bottom: 48px;
 }
 
+/* ---- Utilities ---- */
 .tag {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 4px;
   font-size: 11px;
   font-weight: 600;
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--primary-bg);
+  color: var(--primary);
   margin: 3px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   font-family: 'Fira Code', monospace;
 }
 
@@ -73,3 +81,9 @@ section { padding: 80px 0; background: #ffffff; }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* optional scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #ffffff; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
