@@ -3,7 +3,7 @@ import './Achievements.css';
 
 const achievements = [
   {
-    title: 'Top 3 – XHorizon Hackathon',
+    title: 'Top 3 –   XHorizon Hackathon',
     subtitle: '170+ Teams · LMS + Coding Platform',
     date: 'Mar 2025',
     desc: [
@@ -71,7 +71,6 @@ export default function Achievements() {
   return (
     <section id="achievements">
       <div className="container">
-        <p className="section-label">// experience & milestones</p>
         <h2 className="section-title">Achievements</h2>
 
         <div className="achievements-grid">
