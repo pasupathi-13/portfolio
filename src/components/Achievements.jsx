@@ -2,32 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './Achievements.css';
 
 const achievements = [
-  {
-    title: 'Top 3 –   XHorizon Hackathon',
-    subtitle: '170+ Teams · LMS + Coding Platform',
-    date: 'Mar 2025',
-    desc: [
-      'Built AI-powered LMS with integrated coding platform and Razorpay payments',
-      'Developed role-based dashboards for Admin, Faculty, and Student',
-      'Integrated AI code assistant and resume generator using Gemini API'
-    ],
-    tags: ['React.js', 'Express.js', 'MongoDB', 'GeminiAPI', 'TailwindCSS', 'Razorpay', 'Cloudinary'],
-    gradient: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-    icon: '🏆',
-    color: '#7c3aed'
-  },
-  {
-    title: 'Runner-Up, ISTE Hackathon',
-    subtitle: '2nd place among 50+ teams',
-    date: 'Feb 2025',
-    desc: [
-      'Built a Hackathon Management Platform for end-to-end virtual hackathon management with real-time collaboration via Socket.io'
-    ],
-    tags: ['MERN Stack', 'TailwindCSS', 'Socket.io'],
-    gradient: 'linear-gradient(135deg, #2563eb, #60a5fa)',
-    icon: '🥈',
-    color: '#2563eb'
-  },
+  
   {
     title: 'Multiple Full-Stack Projects',
     subtitle: '7+ projects deployed',
