@@ -1,56 +1,48 @@
-/* ===== navbar.css – Pure White ===== */
-
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 48px;
-  height: 68px;
-  background: rgba(255, 255, 255, 0.9);
+  height: 64px;
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #e5e7eb;
   transition: box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
 }
 
 .nav-brand {
   font-family: 'Fira Code', monospace;
-  font-size: 0.95rem;
-  color: var(--primary);
+  font-size: 0.92rem;
+  color: #111827;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
-  letter-spacing: -0.3px;
 }
 
 .nav-brand-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--primary);
+  width: 7px; height: 7px;
+  background: #111827;
   border-radius: 50%;
-  animation: pulse-dot 2s ease-in-out infinite;
-  box-shadow: 0 0 12px rgba(108, 58, 245, 0.25);
+  animation: pulse-dot 2.5s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.7); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
 }
 
 .nav-links {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   list-style: none;
   align-items: center;
 }
@@ -59,49 +51,63 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 18px;
-  border-radius: 10px;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 0.87rem;
+  color: #6b7280;
   font-weight: 500;
   font-family: 'Space Grotesk', sans-serif;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   position: relative;
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
-  background: var(--primary-bg);
+  color: #111827;
+  background: #f3f4f6;
 }
 
 .nav-link.active {
-  color: var(--primary);
-  background: var(--primary-bg);
+  color: #111827;
+  background: #f3f4f6;
   font-weight: 600;
 }
 
+/* colored underline on active */
 .nav-link.active::after {
   content: '';
   position: absolute;
   bottom: 2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
+  width: 18px;
   height: 2.5px;
-  border-radius: 4px;
-  background: var(--primary);
+  border-radius: 99px;
+  background: #111827;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 20px;
-    height: 60px;
-  }
-  .nav-link {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-  .nav-brand {
-    font-size: 0.85rem;
-  }
-}
+/* each nav item gets a unique hover color */
+.nav-links li:nth-child(1) .nav-link:hover,
+.nav-links li:nth-child(1) .nav-link.active { color: #111827; }
+
+.nav-links li:nth-child(2) .nav-link:hover,
+.nav-links li:nth-child(2) .nav-link.active { color: #2563eb; } /* Education - blue */
+
+.nav-links li:nth-child(3) .nav-link:hover,
+.nav-links li:nth-child(3) .nav-link.active { color: #16a34a; } /* Skills - green */
+
+.nav-links li:nth-child(4) .nav-link:hover,
+.nav-links li:nth-child(4) .nav-link.active { color: #9333ea; } /* Projects - purple */
+
+.nav-links li:nth-child(5) .nav-link:hover,
+.nav-links li:nth-child(5) .nav-link.active { color: #ea580c; } /* Achievements - orange */
+
+.nav-links li:nth-child(6) .nav-link:hover,
+.nav-links li:nth-child(6) .nav-link.active { color: #dc2626; } /* Contact - red */
+
+/* match underline color to nav item */
+.nav-links li:nth-child(1) .nav-link.active::after { background: #111827; }
+.nav-links li:nth-child(2) .nav-link.active::after { background: #2563eb; }
+.nav-links li:nth-child(3) .nav-link.active::after { background: #16a34a; }
+.nav-links li:nth-child(4) .nav-link.active::after { background: #9333ea; }
+.nav-links li:nth-child(5) .nav-link.active::after { background: #ea580c; }
+.nav-links li:nth-child(6) .nav-link.active::after { background: #dc2626; }

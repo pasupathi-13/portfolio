@@ -1,168 +1,295 @@
-/* ===== projects.css – Pure White ===== */
-
 #projects {
   background: #ffffff;
-  padding: 80px 0;
+  padding: 100px 0;
 }
 
+/* ── Grid ── */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
+/* ── Card ── */
 .project-card {
   background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease,
+              transform 0.5s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  border-color: var(--primary);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  border-color: #9ca3af;
 }
 
-.project-num {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-bottom: 12px;
+/* ── Featured badge ── */
+.featured-badge {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  background: #7c3aed;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 0 0 10px 10px;
   letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(124,58,237,0.3);
 }
 
-.project-icon {
-  font-size: 2rem;
-  margin-bottom: 12px;
+/* ── Preview screenshot area ── */
+.project-preview {
+  height: 180px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* fake browser bar */
+.preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.preview-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.preview-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   display: block;
 }
 
-.project-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 8px;
+.preview-url {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.08);
+  padding: 2px 10px;
+  border-radius: 4px;
 }
 
+/* preview body content */
+.preview-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 16px;
+  position: relative;
+}
+
+.preview-emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.preview-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.preview-line {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.15);
+}
+
+.preview-line.long { width: 100px; }
+.preview-line.medium { width: 72px; }
+.preview-line.short { width: 50px; }
+
+/* shimmer on preview */
+.project-card:hover .preview-line {
+  background: rgba(255,255,255,0.25);
+  transition: background 0.3s;
+}
+
+/* ── Card body ── */
+.project-body {
+  padding: 20px 22px 22px;
+}
+
+.project-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+
+.project-card:hover .project-name { color: #7c3aed; }
+
 .project-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-size: 0.82rem;
+  color: #6b7280;
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-tags {
-  margin-bottom: 18px;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
+  margin-bottom: 16px;
 }
 
 .tag {
   display: inline-block;
-  padding: 2px 10px;
+  padding: 3px 10px;
   border-radius: 20px;
   font-size: 0.7rem;
   font-weight: 600;
-  background: var(--primary-bg);
-  color: var(--primary);
-  border: 1px solid var(--border);
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
   font-family: 'Fira Code', monospace;
 }
 
+/* ── Buttons ── */
 .project-btns {
   display: flex;
   gap: 10px;
 }
 
-.btn-demo {
+.btn-view {
   flex: 1;
   padding: 10px 0;
-  background: var(--primary);
+  background: #111827;
   color: #ffffff;
-  border-radius: 10px;
+  border-radius: 9px;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 12px rgba(108, 58, 245, 0.12);
-  border: none;
-  cursor: pointer;
+  transition: all 0.25s ease;
+  display: block;
 }
 
-.btn-demo:hover {
-  background: var(--primary-dark);
+.btn-view:hover {
+  background: #374151;
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(108, 58, 245, 0.18);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
 }
 
-.btn-code {
+.btn-github {
   padding: 10px 16px;
-  background: #f8fafc;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  background: #ffffff;
+  color: #374151;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
-.btn-code:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: var(--primary-bg);
+.btn-github:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
   transform: translateY(-2px);
 }
 
+/* ── Toggle ── */
 .projects-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.btn-toggle {
+  padding: 13px 36px;
+  background: #111827;
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-toggle:hover {
+  background: #374151;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+}
+
+/* ── GitHub CTA ── */
+.projects-github-cta {
   display: flex;
   justify-content: center;
 }
 
-.btn-toggle {
-  padding: 14px 36px;
-  background: var(--primary);
-  color: #ffffff;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.github-cta-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 16px rgba(108, 58, 245, 0.15);
+  color: #6b7280;
+  font-size: 0.84rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  transition: all 0.2s;
 }
 
-.btn-toggle:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(108, 58, 245, 0.2);
-  background: var(--primary-dark);
+.github-cta-link:hover {
+  color: #111827;
+  border-color: #111827;
+  background: #f9fafb;
 }
 
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .project-card {
-    padding: 20px;
-  }
+  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
 }

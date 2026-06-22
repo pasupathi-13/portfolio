@@ -1,62 +1,83 @@
 import React, { useEffect, useRef } from 'react';
 import './Skills.css';
 
-const skillCategories = [
-  {
-    title: 'Languages',
-    icon: '💬',
-    items: ['Python', 'Java', 'JavaScript', 'HTML', 'CSS']
-  },
-  {
-    title: 'Backend & API',
-    icon: '⚙️',
-    items: ['FastAPI', 'REST APIs', 'Node.js', 'Express.js', 'API Integration', 'JSON Handling']
-  },
+const skillsData = [
   {
     title: 'Frontend',
     icon: '🎨',
-    items: ['HTML', 'CSS', 'JavaScript', 'React.js', 'Responsive Web Design']
+    skills: ['React', 'Next.js', 'TailwindCSS', 'Framer Motion', 'TypeScript'],
+    accent: '#7c3aed', // purple
+    rgb: '124, 58, 237'
   },
   {
-    title: 'Database & Core CS',
-    icon: '🗄️',
-    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'SQL', 'Data Structures & Algorithms', 'OOPs', 'DBMS']
+    title: 'Backend',
+    icon: '⚙️',
+    skills: ['Node.js', 'Express', 'Python', 'FastAPI', 'MongoDB', 'PostgreSQL'],
+    accent: '#2563eb', // blue
+    rgb: '37, 99, 235'
   },
   {
-    title: 'Tools & Frameworks',
+    title: 'DevOps & Tools',
     icon: '🛠️',
-    items: ['Git', 'GitHub', 'VS Code', 'Postman', 'Software Development Fundamentals']
+    skills: ['Git', 'Docker', 'AWS', 'Vercel', 'Netlify', 'CI/CD'],
+    accent: '#16a34a', // green
+    rgb: '22, 163, 74'
+  },
+  {
+    title: 'Other',
+    icon: '💡',
+    skills: ['Figma', 'Jira', 'Postman', 'Linux', 'Agile'],
+    accent: '#ea580c', // orange
+    rgb: '234, 88, 12'
   }
 ];
 
 export default function Skills() {
-  const ref = useRef();
+  const cardsRef = useRef([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) ref.current?.classList.add('visible');
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    const observers = cardsRef.current.map((el) => {
+      if (!el) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.classList.add('visible');
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(el);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((obs) => obs?.disconnect());
+    };
   }, []);
 
   return (
     <section id="skills">
       <div className="container">
-        <p className="section-label">// tech stack</p>
-        <h2 className="section-title">Technical Skills</h2>
-        <div className="skills-grid reveal" ref={ref}>
-          {skillCategories.map((cat, idx) => (
-            <div className="skill-category" key={idx}>
+       
+        <h2 className="section-title">Skills</h2>
+
+        <div className="skills-grid">
+          {skillsData.map((cat, idx) => (
+            <div
+              key={idx}
+              className="skill-category"
+              ref={(el) => (cardsRef.current[idx] = el)}
+              style={{
+                '--accent': cat.accent,
+                '--accent-rgb': cat.rgb
+              }}
+            >
               <div className="skill-category-title">
                 <span>{cat.icon}</span> {cat.title}
               </div>
               <div className="skill-items">
-                {cat.items.map((item, i) => (
-                  <span className="skill-tag" key={i}>{item}</span>
+                {cat.skills.map((skill, i) => (
+                  <span className="skill-tag" key={i}>{skill}</span>
                 ))}
               </div>
             </div>
